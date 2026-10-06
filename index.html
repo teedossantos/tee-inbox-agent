@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tee Inbox Agent</title>
+<meta name="description" content="A personal, single-user command-line tool that organizes Tee DosSantos' own Gmail inboxes. Runs locally; no server, no third parties.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+
+<h1>Tee Inbox Agent</h1>
+<p class="lede">A personal command-line tool that files notification noise out of my own Gmail inboxes. It runs on my laptop, it has exactly one user, and it is not a product.</p>
+
+<h2>What it is</h2>
+<p>Tee Inbox Agent is a small set of Python scripts I wrote for myself. Email newsletters, shipping notices, receipts and marketing blasts pile up faster than I can sort them by hand, so the tool looks at who is sending me the most mail, proposes a label and a Gmail filter for each repeat sender, and — once I approve the list — creates those labels and filters and files the existing backlog.</p>
+<p>That is the whole scope. It is a chore automator for two mailboxes that belong to me.</p>
+
+<div class="callout">
+<p><strong>Not available to anyone else.</strong> There is no sign-up, no hosted service, and no shared instance. The tool authorizes only against my own Google Accounts and runs only on my own machines.</p>
+</div>
+
+<h2>How it works</h2>
+<ul>
+  <li>I run it manually from a terminal. There is no background service and no scheduled job.</li>
+  <li>It talks directly to the Gmail API from my laptop. There is no backend server of mine in between.</li>
+  <li>It reads message <em>headers</em> only — sender, subject line, and the <code>List-Id</code> / <code>List-Unsubscribe</code> headers that identify bulk mail. It does not download message bodies or attachments.</li>
+  <li>It writes back only inbox organization: it creates labels, creates Gmail filters, applies labels, archives, and marks messages read. It can route mail from a sender I have confirmed as a scam into Spam or Trash.</li>
+  <li>It never composes, sends, forwards, or replies to mail, and it never permanently deletes anything.</li>
+</ul>
+
+<h2>Why it asks for Gmail permissions</h2>
+<p>Google requires an app to request named permission scopes. This one requests two:</p>
+<ul>
+  <li><code>gmail.modify</code> — to read message headers and to apply, remove, and manage labels (archiving and marking-as-read are label operations in Gmail).</li>
+  <li><code>gmail.settings.basic</code> — to create the Gmail filters that keep doing the work after the tool has exited.</li>
+</ul>
+<p>Those permissions are granted by me, to a tool on my own computer, against my own mailboxes.</p>
+
+<h2>Privacy</h2>
+<p>The short version: nothing leaves my machine. The long version is on the <a href="privacy.html">privacy policy</a> page.</p>
+
+<h2>Contact</h2>
+<p class="meta">Tee DosSantos — <a href="mailto:teedossantos@gmail.com">teedossantos@gmail.com</a></p>
+
+<nav>
+  <a href="privacy.html">Privacy Policy</a>
+  <a href="terms.html">Terms of Service</a>
+</nav>
+
+</main>
+</body>
+</html>
